@@ -45,6 +45,7 @@ public interface DataRepository {
 
     public Future<Long> deleteUnseenCount(String userId, String sessionId);
 
+    public Future<ChatList> insertChatListWithKey(ChatList chatList, String key);
     Future<Long> deleteFriend(String userId, String friendId);
 
 	//Future<UserProfileResponse> getUserProfile(String userId);

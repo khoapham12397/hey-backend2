@@ -259,7 +259,9 @@ public class RedisCacheClient implements DataRepository {
 
                     future.complete(userStatus);
                 }else{
-                    future.complete(null);
+                	UserStatus status =new UserStatus();
+                	status.setUserId(userId); status.setStatus("Hello");
+                    future.complete();
                 }
             }else {
                 future.fail(res.cause());
@@ -327,7 +329,32 @@ public class RedisCacheClient implements DataRepository {
 
         return future;
     }
+    @Override
+    public Future<ChatList> insertChatListWithKey(ChatList chatList,String key) {
+    	 Future<ChatList> future = Future.future();
 
+         JsonObject chatListJsonObject = new JsonObject();
+         String updatedDate = String.valueOf(chatList.getUpdatedDate() != null ? chatList.getUpdatedDate().getTime() : new Date().getTime());
+         chatListJsonObject.put("updated_date", updatedDate);
+         List<String> userIds = new ArrayList<>();
+         for(UserHash userHash : chatList.getUserHashes()){
+             chatListJsonObject.put(userHash.getUserId(), userHash.getFullName());
+           //  userIds.add(userHash.getUserId());
+         }
+
+         chatListJsonObject.put("last_message", StringUtils.isEmpty(chatList.getLastMessage()) ? "no message" : chatList.getLastMessage());
+
+         client.hmset(key, chatListJsonObject, res -> {
+             if (res.succeeded()) {
+                 future.complete(chatList);
+             }else{
+                 future.fail(res.cause());
+             }
+         });
+
+         return future;
+    }
+    
     @Override
     public Future<ChatList> insertChatList(ChatList chatList) {
 

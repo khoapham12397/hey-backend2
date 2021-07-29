@@ -84,10 +84,23 @@ public class APIService extends BaseService{
             }else{
             	
             	String userId =GenerationUtils.generateId();
+            	
             	user.setUserId(userId);
             	
-                Future<User> insertUserFuture = insertUser(user);
-                Future<JsonObject> callFuture = webClient.callPostService("registerUser", JsonObject.mapFrom(user));
+            	System.out.println("new user id: "+user.getUserId());
+            	
+            	JsonObject obj =new JsonObject();
+            
+            	obj.put("userId", userId);
+            	obj.put("username", user.getUserName());
+            	obj.put("fullname",user.getFullName());
+            	obj.put("password", user.getPassword());
+            	
+            	
+            	System.out.println("call to register: "+ user.getFullName() +" ,"+user.getUserName()+" "+user.getPassword());
+                Future<JsonObject> callFuture = webClient.callPostService("/registerUser", obj);
+            	Future<User> insertUserFuture = insertUser(user);
+              
                 CompositeFuture cp = CompositeFuture.all(insertUserFuture,callFuture);
 
                 cp.setHandler(ar->{
@@ -102,8 +115,7 @@ public class APIService extends BaseService{
         }, Future.future().setHandler(handler -> {
             future.fail(handler.cause());
         }));
-        
-        
+       
         return future;
     }
   
@@ -617,7 +629,7 @@ public class APIService extends BaseService{
         Future<List<String>> getKeysByPatternFuture = dataRepository.getKeysByPattern(keyPattern);
 
         getKeysByPatternFuture.compose(keys -> {
-
+        	System.out.println("In func getChatListkeys  : so luong keys:" + keys.size());
             String chatListKey = keys.get(0);
             Future<ChatList> getChatListFuture = dataRepository.getChatList(chatListKey);
 

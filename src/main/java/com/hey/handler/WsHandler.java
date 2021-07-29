@@ -196,7 +196,7 @@ public class WsHandler extends BaseHandler{
         Future<UserFull> getUserFullFuture = dataRepository.getUserFull(userId);
         long startTime = System.currentTimeMillis();
         getUserFullFuture.compose(userFull -> {
-            long elapsed = System.currentTimeMillis() - startTime;
+        	// long elapsed = System.currentTimeMillis() - startTime;
             //System.out.println("Handler: " + elapsed);
 
             ChatMessage chatMessage = new ChatMessage();
@@ -211,7 +211,7 @@ public class WsHandler extends BaseHandler{
 
             Future<ChatList> getChatListBySessionIdFuture = apiService.getChatListBySessionId(chatMessage.getSessionId());
           
-            
+           
             
             CompositeFuture cp = CompositeFuture.all(insertChatMessagesAndUpdateChatListAndUpdateUnseenCountFuture, getChatListBySessionIdFuture);
             cp.setHandler(ar -> {

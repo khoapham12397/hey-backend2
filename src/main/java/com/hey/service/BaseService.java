@@ -87,18 +87,24 @@ public abstract class BaseService {
         String keyPattern = "chat:list:" + chatMessage.getSessionId() + "*";
         Future<List<String>> getKeysByPatternFuture = dataRepository.getKeysByPattern(keyPattern);
         getKeysByPatternFuture.compose(chatListKeys -> {
-
+        	System.out.println("so luong keys chatList:" +chatListKeys.size());
             // Get current chat list for update later
+        	System.out.println("Find chatList key: "+ chatListKeys.get(0));
             Future<ChatList> getChatListFuture = dataRepository.getChatList(chatListKeys.get(0));
             getChatListFuture.compose(chatList -> {
-
+            	// co chac dung vay :
+            	// dieu do the nap??
+            	// cai nay can xac dinh lau ??
+            	// dun :
+            	
+            	List<UserHash>  userHashs= chatList.getUserHashes();
                 // Insert new chat message
                 Future<ChatMessage> insertChatMessageFuture = dataRepository.insertChatMessage(chatMessage);
 
                 // Update chat list
                 chatList.setLastMessage(chatMessage.getMessage());
                 chatList.setUpdatedDate(chatMessage.getCreatedDate());
-                Future<ChatList> insertChatListFuture = dataRepository.insertChatList(chatList);
+                Future<ChatList> insertChatListFuture = dataRepository.insertChatListWithKey(chatList, chatListKeys.get(0));
 
                 // increase unseen count
                 List<String> userFriendIds = new ArrayList<>();

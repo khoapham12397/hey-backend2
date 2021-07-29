@@ -2,7 +2,7 @@ package com.hey.model;
 
 import java.io.Serializable;
 
-public class User {
+public class User implements Serializable{
     private String userId;
     private String userName;
     private String fullName;

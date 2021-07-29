@@ -18,10 +18,7 @@ public class UserStatus implements Serializable {
     public String getStatus() {
         return status;
     }
-    // status la cai gi thi chua co lay duoc do :
-    // dung roi do : con cai gi nua do :
-    // dung vay :
-    
+  
     public void setStatus(String status) {
         this.status = status;
     }

@@ -33,6 +33,7 @@ import com.hey.walletmodel.Present;
 import com.hey.walletmodel.PresentsOfSession;
 import com.hey.walletmodel.Profile;
 import com.hey.walletmodel.ReceiveLixi;
+import com.hey.walletmodel.RegisterWallet;
 import com.hey.walletmodel.RegisterWalletResponse;
 import com.hey.walletmodel.RemovePresentResponse;
 import com.hey.walletmodel.SendP2PRequest;
@@ -106,24 +107,28 @@ public class WalletService {
 				JsonObject obj = ar.result();
 				ChangePassResponse res = obj.mapTo(ChangePassResponse.class);
 				future.complete(res);
-				redisCache.setHashedPassword(res.getHashedPassword(), userId);
+				if(res.getCode()) redisCache.setHashedPassword(res.getHashedPassword(), userId);
 			}
 			else future.fail(ar.cause());
 		});
 		return future;
 	}
-	public Future<RegisterWalletResponse> registerWallet(String hashedPin, String userId){
+	
+	public Future<RegisterWalletResponse> registerWallet( RegisterWallet rq, String userId){
 		Future<RegisterWalletResponse> future = Future.future();
 		Future<Boolean> existWFuture= redisCache.existWallet(userId);
 		existWFuture.setHandler(ar->{
 			if(ar.succeeded()) {
 				if(!ar.result()) {
 					JsonObject body =new JsonObject();
-					body.put("userId",  userId); body.put("hashedPin", hashedPin);
-					Future<JsonObject> callFuture = webClient.callPostService("/regiserWallet", body);
+					body.put("userId",  userId); body.put("hashedPin", rq.getHashedPin());
+					body.put("identity", rq.getIdentity()); 
+					body.put("phone", rq.getPhone());
+					body.put("email",rq.getEmail());
+					Future<JsonObject> callFuture = webClient.callPostService("/registerWallet", body);
 					callFuture.compose(result->{
 						future.complete(result.mapTo(RegisterWalletResponse.class));
-						redisCache.insertWallet(hashedPin, userId);
+						redisCache.insertWallet(rq.getHashedPin(), userId);
 					},Future.future().setHandler(handler->{
 						future.fail(handler.cause());
 					}));
@@ -144,8 +149,9 @@ public class WalletService {
 		Future<JsonObject> callFuture = webClient.callPostService("/changePin", body);
 		callFuture.setHandler(ar->{
 			if(ar.succeeded()) {
-				future.complete(ar.result().mapTo(ChangePinResponse.class));
-				redisCache.setHashedPin(rq.getNewPin(), userId);
+				ChangePinResponse res = ar.result().mapTo(ChangePinResponse.class);
+				future.complete(res);
+				if(res.getCode()) redisCache.setHashedPin(rq.getNewPin(), userId);
 			}
 			else future.fail(ar.cause());
 		});
@@ -280,9 +286,6 @@ public class WalletService {
 				String name = ar.result();
 				if(name!=null) {
 					ChatMessageRequest msg = new ChatMessageRequest();
-					msg.setType(IWsMessage.TYPE_CHAT_MESSAGE_REQUEST);
-					
-					
 					msg.setMessage("PRESENT:"+present.getPresentId() +":"+ name+":"+ present.getTotalAmount()+ ":"+present.getStartTime());
 					msg.setSessionId(present.getSessionId());
 					msg.setGroupChat(true);
@@ -304,16 +307,16 @@ public class WalletService {
 	public Future<SendP2PResponse> sendP2P(SendP2PRequest rq, String userId){
 		Future<SendP2PResponse> future = Future.future();
 		Future<String> getUserIdFuture = redisCache.getUserIdByUsername(rq.getUsername());
-		Future<Authen> authenFuture = redisCache.getAuthen(userId);
+		Future<WalletResponse> walletFuture = redisCache.getWallet(userId);
 		
-		CompositeFuture cp = CompositeFuture.all(getUserIdFuture, authenFuture);
+		CompositeFuture cp = CompositeFuture.all(getUserIdFuture, walletFuture);
 		cp.setHandler(ar->{
 			if(ar.succeeded()) {
 				String receiverId = cp.resultAt(0);
-				Authen authen = cp.resultAt(1);
-				String hashedPin = authen.getHashedPin();
+				WalletResponse wallet = cp.resultAt(1);
+				String hashedPin = wallet.getHashedPin();
 				
-				if(authen!=null && hashedPin.equals(rq.getPin())) {
+				if(wallet!=null && hashedPin.equals(rq.getPin())) {
 					String url = "/sendP2P";
 					JsonObject body = new JsonObject();
 					
@@ -454,7 +457,7 @@ public class WalletService {
 				
 				Future<Boolean> checkUserGotFuture = redisCache.checkUserGotPresent(userId, presentId);
 				checkUserGotFuture.compose(gotten->{
-					if(gotten) future.complete(null);
+					if(gotten) future.fail("You have already receive this present");
 					else {
 						JsonObject body =new JsonObject();
 						body.put("userId", userId);
@@ -627,3 +630,4 @@ public class WalletService {
 		return future;
 	}
 }	
+

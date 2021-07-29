@@ -27,6 +27,9 @@ public class UserWsChannelManager {
         this.sharedData = sharedData;
     }
    
+    // thang do la ko co comunity voi socket ??
+    // dung vay dp:
+    // sau do this ao ??
     
     public void sendMessage(IWsMessage message, String userId) {
         getChannels(userId).setHandler(event -> {

@@ -35,6 +35,8 @@ import com.hey.walletmodel.P2PTransaction;
 import com.hey.walletmodel.Present;
 import com.hey.walletmodel.PresentsOfSession;
 import com.hey.walletmodel.Profile;
+import com.hey.walletmodel.RegisterWallet;
+import com.hey.walletmodel.RegisterWalletResponse;
 import com.hey.walletmodel.RemovePresentResponse;
 import com.hey.walletmodel.SendP2PRequest;
 import com.hey.walletmodel.SendP2PResponse;
@@ -146,7 +148,7 @@ public class WalletPublicHandler {
             				break;
             			case "/receivePresent":
             				
-            				receivePresent(request, response, jsonObject, "f22a7779-807c-40e7-9f35-f76b78c2aea2");
+            				receivePresent(request, response, jsonObject, userId);
             				break;
             			case "/getAllLixis":
             				getAllLixis(request, response, jsonObject, userId);
@@ -178,6 +180,9 @@ public class WalletPublicHandler {
             			case "/delAllMsgPresent":
             				delAllMsgPresent(request, response, jsonObject, userId);
             				break;
+            			case "/registerWallet":
+            				registerWallet(request, response, jsonObject, userId);
+            				break;
             		}
           
 	 	}catch (HttpStatusException e) {
@@ -191,8 +196,25 @@ public class WalletPublicHandler {
         }
 	}
 	
-	
-	
+	private void registerUser(HttpServerRequest request, HttpServerResponse response, JsonObject jsonObject,
+			String userId) {
+		
+	}
+	private void registerWallet(HttpServerRequest request, HttpServerResponse response, JsonObject jsonObject,
+			String userId) {
+		// dang ky no thi lam soa ?
+			userId = "2f2d38a7-22b9-4eef-87e0-677187c6fe2d";
+		 Future<RegisterWalletResponse> future = walletService.registerWallet(jsonObject.mapTo(RegisterWallet.class), userId);
+		 future.compose(result->{
+			//	System.out.println("Da xoa xong");
+				response.setStatusCode(HttpStatus.OK.code())
+				.putHeader("content-type", "application/json; charset=utf-8")
+				.end(JsonUtils.toSuccessJSON(result));
+			},Future.future().setHandler(handler->{
+				handleException(handler.cause(), response);	
+
+			}));
+	}
 	private void check2User(HttpServerRequest request, HttpServerResponse response, JsonObject jsonObject,
 			String userId) {
 			Future<String> sessionId = redisCache.getSessionIdChatPair(userId, jsonObject.getString("userId"));
@@ -388,6 +410,9 @@ public class WalletPublicHandler {
 	
 	public void receivePresent(HttpServerRequest request , HttpServerResponse response,JsonObject jsonObject ,String userId) {
 		GetPresentRequest rq = jsonObject.mapTo(GetPresentRequest.class);
+		userId = "f22a7779-807c-40e7-9f35-f76b78c2aea2";
+		// neu ma random :
+		
 		Future<GetPresentResponse> future = walletService.getLixi(rq, userId);
 		future.compose(result->{
 			

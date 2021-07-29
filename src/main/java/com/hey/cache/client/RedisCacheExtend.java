@@ -192,6 +192,7 @@ public class RedisCacheExtend  {
 				if(obj.getString("balance")!=null) {
 					WalletResponse wallet = new WalletResponse();
 					wallet.setBalance(Long.valueOf(obj.getString("balance")));
+					wallet.setHashedPin(obj.getString("hashed_pin"));
 					
 					future.complete(wallet);
 				}else future.complete(null);

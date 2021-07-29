@@ -124,6 +124,7 @@ public class RedisCacheClient implements DataRepository {
     // dung vay do:
     // cai nay no hoi bi kho chiu cach no design :
     
+    
     @Override
     public Future<UserAuth> insertUserAuth(UserAuth userAuth) {
 
@@ -150,7 +151,8 @@ public class RedisCacheClient implements DataRepository {
 
         return future;
     }
-
+    
+    
     @Override
     public Future<UserAuth> getUserAuth(String userName) {
 

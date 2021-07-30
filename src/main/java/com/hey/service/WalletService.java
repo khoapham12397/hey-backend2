@@ -286,7 +286,7 @@ public class WalletService {
 				String name = ar.result();
 				if(name!=null) {
 					ChatMessageRequest msg = new ChatMessageRequest();
-					msg.setMessage("PRESENT:"+present.getPresentId() +":"+ name+":"+ present.getTotalAmount()+ ":"+present.getStartTime());
+					msg.setMessage("PRESENT:"+present.getPresentId() +":"+ present.getSessionId()+":"+ name+":"+ present.getTotalAmount()+ ":"+present.getStartTime());
 					msg.setSessionId(present.getSessionId());
 					msg.setGroupChat(true);
 					msg.setType(IWsMessage.TYPE_CHAT_MESSAGE_REQUEST);

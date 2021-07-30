@@ -6,6 +6,7 @@ import com.hey.cache.client.RedisCacheClient;
 import com.hey.cache.client.RedisCacheExtend;
 import com.hey.handler.ProtectedApiHandler;
 import com.hey.handler.PublicApiHandler;
+import com.hey.handler.WalletProtectedHandler;
 import com.hey.handler.WalletPublicHandler;
 import com.hey.handler.AuthenticationHandler;
 import com.hey.handler.WsHandler;
@@ -34,6 +35,7 @@ public class HeyVerticle extends AbstractVerticle {
     private MyWebClient myClient;
     
     private WalletService walletService;
+    private WalletProtectedHandler walletProtectedHandler;
     private WalletPublicHandler walletPublicHandler;
     private RedisCacheExtend redisCache;
     public APIService getApiService() {
@@ -122,11 +124,19 @@ public class HeyVerticle extends AbstractVerticle {
         redisCache =new RedisCacheExtend(client);
         walletService = new WalletService(redisCache, myClient);
         walletService.setUserWsChannelManager(userWsChannelManager);
+        
         walletPublicHandler =new WalletPublicHandler(walletService);
         walletPublicHandler.setChanelManager(userWsChannelManager);
         walletPublicHandler.setJwtManager(jwtManager);
         walletPublicHandler.setRedisCache(redisCache);
         apiServer.setWalletPublicHandler(walletPublicHandler);
+        
+        walletProtectedHandler  =new WalletProtectedHandler(walletService);
+        walletProtectedHandler.setChanelManager(userWsChannelManager);
+        walletProtectedHandler.setJwtManager(jwtManager);
+        walletProtectedHandler.setRedisCache(redisCache);
+        apiServer.setWalletProtectedHandler(walletProtectedHandler);
+        
         wsHandler.setRedisCache(redisCache);
         redisCache.setWebClient(myClient);
         walletService.setWsHandler(wsHandler);

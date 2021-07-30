@@ -2,6 +2,7 @@ package com.hey.api;
 
 import com.hey.handler.ProtectedApiHandler;
 import com.hey.handler.PublicApiHandler;
+import com.hey.handler.WalletProtectedHandler;
 import com.hey.handler.WalletPublicHandler;
 import com.hey.handler.AuthenticationHandler;
 import com.hey.util.PropertiesUtils;
@@ -27,6 +28,7 @@ public final class ApiServer {
     private PublicApiHandler publicApiHandler;
     private AuthenticationHandler authenticationHandler;
     private WalletPublicHandler walletPublicHandler;
+    private WalletProtectedHandler walletProtectedHandler;
     private CSRFHandler csrfHandler;
     private static final Logger LOGGER = LogManager.getLogger(ApiServer.class);
 
@@ -99,6 +101,8 @@ public final class ApiServer {
 
         router.route("/api/protected/*").handler(protectedApiHandler::handle);
         router.route("/api/wallet/public/*").handler(walletPublicHandler::handle);
+        router.route("/api/wallet/protected/*").handler(walletProtectedHandler::handle);
+
         router.post("/api/public/*").handler(publicApiHandler::handle);
         
         Future future = Future.future();
@@ -134,6 +138,16 @@ public final class ApiServer {
 
 	public void setWalletPublicHandler(WalletPublicHandler walletPublicHandler) {
 		this.walletPublicHandler = walletPublicHandler;
+	}
+
+
+	public WalletProtectedHandler getWalletProtectedHandler() {
+		return walletProtectedHandler;
+	}
+
+
+	public void setWalletProtectedHandler(WalletProtectedHandler walletProtectedHandler) {
+		this.walletProtectedHandler = walletProtectedHandler;
 	}
 
 

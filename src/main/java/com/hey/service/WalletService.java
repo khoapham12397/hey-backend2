@@ -23,6 +23,7 @@ import com.hey.walletmodel.ChangePinRequest;
 import com.hey.walletmodel.ChangePinResponse;
 import com.hey.walletmodel.ChangeProfileRequest;
 import com.hey.walletmodel.CreatePresentRequest;
+import com.hey.walletmodel.GetBalanceResponse;
 import com.hey.walletmodel.GetP2PsRequest;
 import com.hey.walletmodel.GetPresentRequest;
 import com.hey.walletmodel.GetPresentResponse;
@@ -139,7 +140,20 @@ public class WalletService {
 		});
 		return future;
 	}
-	
+	public Future<GetBalanceResponse> getWallet(String userId){
+		Future<GetBalanceResponse> future = Future.future();
+		JsonObject obj =new JsonObject();
+		obj.put("userId", userId);
+		
+	 	Future<JsonObject> callFuture = webClient.callPostService("/getBalance", obj );
+	 	callFuture.compose(result->{
+	 		GetBalanceResponse res = result.mapTo(GetBalanceResponse.class);
+	 		future.complete(res);
+	 	},Future.future().setHandler(handler->{
+	 		future.fail(handler.cause());
+	 	}));
+	 	return future;
+	}
 	public Future<ChangePinResponse> changePin(ChangePinRequest rq, String userId){
 		Future<ChangePinResponse> future = Future.future();
 		JsonObject body = new JsonObject();

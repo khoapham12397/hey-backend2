@@ -35,17 +35,7 @@ public class WsHandler extends BaseHandler{
         this.userWsChannelManager = userWsChannelManager;
     }
     
-    
-    // co the duoc do dung la vay do?
-    // vi du them cai gi ?
-    // cai thang nay thi no get nhanh dung vay dp :
-    // dieu nay can duoc lam tot hon??
-    // dun vay :
-    // how to xac dinh so luong unseen ??
-    // dung vay dp:
-    // khi do no co kha nhieu van de dang xay ra ???
-    // dung vay do 
-    // dieu nay can duoc xac dinh dung a y:
+   
     
     
     public void handleChatContainerRequest(ChatContainerRequest request, String channelId, String userId) {

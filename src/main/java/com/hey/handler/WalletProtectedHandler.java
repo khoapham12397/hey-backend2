@@ -24,6 +24,7 @@ import com.hey.walletmodel.ChangePassResponse;
 import com.hey.walletmodel.ChangePinRequest;
 import com.hey.walletmodel.ChangePinResponse;
 import com.hey.walletmodel.CreatePresentRequest;
+import com.hey.walletmodel.GetBalanceResponse;
 import com.hey.walletmodel.GetP2PsRequest;
 import com.hey.walletmodel.GetPresentRequest;
 import com.hey.walletmodel.GetPresentResponse;
@@ -142,7 +143,7 @@ public class WalletProtectedHandler {
         			case "/changePin":
         				changePin(request,response,jsonObject,userId);
         				break;
-        			case "/balance":
+        			case "/getBalance":
         				getWallet(request,response,jsonObject,userId);
         				break;
         			case "/topup":
@@ -183,6 +184,7 @@ public class WalletProtectedHandler {
         			case "/registerWallet":
         				registerWallet(request, response, jsonObject, userId);
         				break;
+        			
         			}
             	}
             });
@@ -207,11 +209,8 @@ public class WalletProtectedHandler {
 	}
 	private void registerWallet(HttpServerRequest request, HttpServerResponse response, JsonObject jsonObject,
 			String userId) {
-		// dang ky no thi lam soa ?
-			userId = "2f2d38a7-22b9-4eef-87e0-677187c6fe2d";
 		 Future<RegisterWalletResponse> future = walletService.registerWallet(jsonObject.mapTo(RegisterWallet.class), userId);
 		 future.compose(result->{
-			//	System.out.println("Da xoa xong");
 				response.setStatusCode(HttpStatus.OK.code())
 				.putHeader("content-type", "application/json; charset=utf-8")
 				.end(JsonUtils.toSuccessJSON(result));
@@ -268,8 +267,9 @@ public class WalletProtectedHandler {
 			.end(JsonUtils.toSuccessJSON(result));
 		},Future.future().setHandler(handler -> {handleException(handler.cause(), response);}));
 	}
+	
 	public void getWallet(HttpServerRequest request , HttpServerResponse response,JsonObject jsonObject ,String userId) {
-		Future<Profile> future = walletService.getProfile(userId);
+		Future<GetBalanceResponse> future = walletService.getWallet(userId);
 		future.compose(result->{
 			response.setStatusCode(HttpStatus.OK.code())
 			.putHeader("content-type", "application/json; charset=utf-8")

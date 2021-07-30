@@ -755,7 +755,7 @@ public class APIService extends BaseService{
                 UserProfileResponse userProfileResponse = new UserProfileResponse();
                 
                 
-                userProfileResponse.setStatus(userStatus.getStatus()); 
+                userProfileResponse.setStatus("hello"); 
                 userProfileResponse.setUserFullName(userFull.getFullName());
                 userProfileResponse.setUserName(userFull.getUserName());
 

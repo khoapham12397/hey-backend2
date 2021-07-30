@@ -84,7 +84,10 @@ public final class ApiServer {
         allowedMethods.add(HttpMethod.PUT);
         //router.route().handler(CSRFHandler.create("not a good secret"));
         //csrfHandler = CSRFHandler.create("my secret");
-      
+        // trong cai header :??
+        // dung vay do:
+        // dieu nay la can thiet dubg:
+        
         //router.post("/*").handler(CSRFHandler.create("not a good secret"));
         //router.route().handler(CookieHandler.create());
        

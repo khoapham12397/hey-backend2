@@ -26,6 +26,7 @@ import com.hey.walletmodel.ChangePassResponse;
 import com.hey.walletmodel.ChangePinRequest;
 import com.hey.walletmodel.ChangePinResponse;
 import com.hey.walletmodel.CreatePresentRequest;
+import com.hey.walletmodel.GetBalanceResponse;
 import com.hey.walletmodel.GetP2PsRequest;
 import com.hey.walletmodel.GetPresentRequest;
 import com.hey.walletmodel.GetPresentResponse;
@@ -118,8 +119,8 @@ public class WalletPublicHandler {
 	 	System.out.println("Vao day xu ly ");
 	 	try {
 	 	String path = StringUtils.substringAfter(requestPath, "/api/wallet/public");
-            		String userId = "086cd413-c19a-4339-b4b6-99109d54a220";
-            		JsonObject jsonObject= null;
+            	String userId = "086cd413-c19a-4339-b4b6-99109d54a220";
+            	JsonObject jsonObject= null;
             		if(ctx.getBody()!=null && ctx.getBody().length() >0) 
             			jsonObject = ctx.getBodyAsJson();
             		switch(path) {
@@ -264,7 +265,7 @@ public class WalletPublicHandler {
 		},Future.future().setHandler(handler -> {handleException(handler.cause(), response);}));
 	}
 	public void getWallet(HttpServerRequest request , HttpServerResponse response,JsonObject jsonObject ,String userId) {
-		Future<Profile> future = walletService.getProfile(userId);
+		Future<GetBalanceResponse> future = walletService.getWallet(userId);
 		future.compose(result->{
 			response.setStatusCode(HttpStatus.OK.code())
 			.putHeader("content-type", "application/json; charset=utf-8")

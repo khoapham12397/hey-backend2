@@ -11,7 +11,7 @@ public class TopupResponse {
 	}
 	private Long transactionId;
 	private Long timestamp;
-	
+	private Long amount;
 	public String getMessage() {
 		return message;
 	}
@@ -30,4 +30,6 @@ public class TopupResponse {
 	public void setTimestamp(Long timestamp) {
 		this.timestamp = timestamp;
 	}
+	public Long getAmount(){return amount;}
+	public void setAmount(Long amount){this.amount = amount;}
 }

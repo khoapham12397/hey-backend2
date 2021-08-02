@@ -135,7 +135,6 @@ public class WalletProtectedHandler {
             		switch(path) {
             		case "/profile":
         				getProfile(request,response,jsonObject,userId);
-        			
         				break;
         			case "/changePassword":
         				changePassword(request,response,jsonObject,userId);
@@ -150,14 +149,12 @@ public class WalletProtectedHandler {
         				topup(request,response,jsonObject,userId);
         				break;
         			case "/sendP2P":
-        				
         				sendP2P(request,response,jsonObject,userId);
         				break;
         			case "/sendPresent":
         				sendPresent(request,response,jsonObject,userId);
         				break;
         			case "/receivePresent":
-        				
         				receivePresent(request, response, jsonObject,userId);
         				break;
         			case "/getAllLixis":
@@ -184,7 +181,6 @@ public class WalletProtectedHandler {
         			case "/registerWallet":
         				registerWallet(request, response, jsonObject, userId);
         				break;
-        			
         			}
             	}
             });
@@ -207,8 +203,7 @@ public class WalletProtectedHandler {
 			String userId) {
 		
 	}
-	private void registerWallet(HttpServerRequest request, HttpServerResponse response, JsonObject jsonObject,
-			String userId) {
+	private void registerWallet(HttpServerRequest request, HttpServerResponse response, JsonObject jsonObject, String userId) {
 		 Future<RegisterWalletResponse> future = walletService.registerWallet(jsonObject.mapTo(RegisterWallet.class), userId);
 		 future.compose(result->{
 				response.setStatusCode(HttpStatus.OK.code())
@@ -216,7 +211,6 @@ public class WalletProtectedHandler {
 				.end(JsonUtils.toSuccessJSON(result));
 			},Future.future().setHandler(handler->{
 				handleException(handler.cause(), response);	
-
 			}));
 	}
 	private void check2User(HttpServerRequest request, HttpServerResponse response, JsonObject jsonObject,
@@ -308,6 +302,7 @@ public class WalletProtectedHandler {
 	}
 	
 	public void topup(HttpServerRequest request , HttpServerResponse response,JsonObject jsonObject ,String userId) {
+		System.out.println(jsonObject.toString());
 		System.out.println(jsonObject.getString("message")+" "+jsonObject.getLong("amount")+ " with pin: "+jsonObject.getString("pin"));
 		Future<TopupResponse> future = walletService.topup(jsonObject.mapTo(TopupRequest.class), userId);
 		

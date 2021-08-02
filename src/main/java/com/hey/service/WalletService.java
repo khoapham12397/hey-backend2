@@ -90,10 +90,7 @@ public class WalletService {
 		}));
 		return future;
 	}
-	
-	
-	
-	
+
 	public Future<ChangePassResponse> changePassword(ChangePassRequest rq, String userId){
 		Future<ChangePassResponse> future = Future.future();
 		JsonObject body = new JsonObject();

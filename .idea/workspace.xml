@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="97b5deda-9051-40de-9661-5af2dd5738c6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/handler/WalletProtectedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/handler/WalletProtectedHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/service/WalletService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/service/WalletService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/walletmodel/TopupResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/walletmodel/TopupResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/api/ApiServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/api/ApiServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/api/WsServer$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/api/WsServer$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/api/WsServer$1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/api/WsServer$1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/api/WsServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/api/WsServer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/api/WsServer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/api/WsServer$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/api/WsServer$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/api/WsServer$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/api/WsServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/api/WsServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/cache/client/RedisCacheClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/cache/client/RedisCacheClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/cache/client/RedisCacheExtend.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/cache/client/RedisCacheExtend.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/cache/client/WalletCacheClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/cache/client/WalletCacheClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/handler/AuthenticationHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/handler/AuthenticationHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/handler/BaseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/handler/BaseHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/handler/ProtectedApiHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/handler/ProtectedApiHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/handler/PublicApiHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/handler/PublicApiHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/handler/WalletProtectedHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/handler/WalletProtectedHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/handler/WalletPublicHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/handler/WalletPublicHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/handler/WsHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/handler/WsHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/manager/JwtManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/manager/JwtManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/manager/UserWsChannelManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/manager/UserWsChannelManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/AddFriendRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/AddFriendRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/AddFriendResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/AddFriendResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/AddressBookItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/AddressBookItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/AddressBookResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/AddressBookResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/ChangeStatusRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/ChangeStatusRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/ChatContainerRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/ChatContainerRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/ChatContainerResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/ChatContainerResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/ChatItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/ChatItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/ChatList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/ChatList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/ChatListItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/ChatListItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/ChatListResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/ChatListResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/ChatMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/ChatMessage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/ChatMessageRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/ChatMessageRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/ChatMessageResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/ChatMessageResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/ChatMessageSendP2P.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/ChatMessageSendP2P.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/FriendList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/FriendList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/GetSessionIdRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/GetSessionIdRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/GetSessionIdResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/GetSessionIdResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/IWsMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/IWsMessage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/NewChatMessageResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/NewChatMessageResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/NewChatSessionResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/NewChatSessionResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/ReceiveMoneyMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/ReceiveMoneyMessage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/UserAuth.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/UserAuth.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/UserFull.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/UserFull.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/UserHash.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/UserHash.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/UserLite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/UserLite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/UserOfflineResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/UserOfflineResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/UserOnlineResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/UserOnlineResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/UserProfileResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/UserProfileResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/UserStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/UserStatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/UserWithOnlineStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/UserWithOnlineStatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/UsernameExistedRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/UsernameExistedRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/UsernameExistedResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/UsernameExistedResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/WaitingChatHeaderRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/WaitingChatHeaderRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/WaitingChatHeaderResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/WaitingChatHeaderResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/WsMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/WsMessage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/repository/DataRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/repository/DataRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/repository/WalletDataRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/repository/WalletDataRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/service/APIService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/service/APIService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/service/AuthenticationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/service/AuthenticationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/service/BaseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/service/BaseService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/service/WalletService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/service/WalletService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/util/ErrorCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/util/ErrorCode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/util/GenerationUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/util/GenerationUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/util/HeyHttpStatusException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/util/HeyHttpStatusException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/util/HttpStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/util/HttpStatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/util/JsonUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/util/JsonUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/util/LogUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/util/LogUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/util/PropertiesUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/util/PropertiesUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/verticle/HeyVerticle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/verticle/HeyVerticle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/Authen.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/Authen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/ChangePassRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/ChangePassRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/ChangePassResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/ChangePassResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/ChangePinRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/ChangePinRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/ChangePinResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/ChangePinResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/ChangeProfileRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/ChangeProfileRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/CreatePresentRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/CreatePresentRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/GeneralResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/GeneralResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/GetBalanceResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/GetBalanceResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/GetP2PsRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/GetP2PsRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/GetPresentRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/GetPresentRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/GetPresentResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/GetPresentResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/GetTopupsRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/GetTopupsRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/LixisOfSession.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/LixisOfSession.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/P2PTransaction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/P2PTransaction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/Present.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/Present.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/PresentsOfSession.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/PresentsOfSession.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/Profile.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/Profile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/ReceiveLixi.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/ReceiveLixi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/RegisterWallet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/RegisterWallet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/RegisterWalletResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/RegisterWalletResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/RegisterWithPin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/RegisterWithPin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/RemovePresentResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/RemovePresentResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/SendP2PRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/SendP2PRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/SendP2PResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/SendP2PResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/TopupRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/TopupRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/TopupResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/TopupResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/TopupTransaction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/TopupTransaction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/WalletResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/WalletResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/web_client/MyWebClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/web_client/MyWebClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/webclient/MyWebClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/webclient/MyWebClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hey/BaseVerticleTestSuite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/hey/BaseVerticleTestSuite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hey/MainTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/hey/MainTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hey/repository/DataRepositoryTestSuite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/hey/repository/DataRepositoryTestSuite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hey/server/ApiServerTestSuite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/hey/server/ApiServerTestSuite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hey/server/HttpServerTestSuite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/hey/server/HttpServerTestSuite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hey/server/WsServerTestSuite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/hey/server/WsServerTestSuite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hey/service/ApiServiceTestSuite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/hey/service/ApiServiceTestSuite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hey/service/AuthenticationServiceTestSuite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/hey/service/AuthenticationServiceTestSuite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hey/service/BaseServiceTestSuite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/hey/service/BaseServiceTestSuite.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1w19z6yjgTvyLGcRaTADcY4h7o6" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../demo-elect-wallet" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-16" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.hey.Main" />
+      <module name="hey-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.hey.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="97b5deda-9051-40de-9661-5af2dd5738c6" name="Changes" comment="" />
+      <created>1627615487398</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1627615487398</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

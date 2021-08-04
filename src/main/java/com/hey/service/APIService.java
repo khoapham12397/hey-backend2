@@ -23,10 +23,7 @@ import com.hey.model.UsernameExistedRequest;
 import com.hey.model.UsernameExistedResponse;
 import com.hey.model.WaitingChatHeaderRequest;
 import com.hey.model.WaitingChatHeaderResponse;
-import com.hey.util.ErrorCode;
-import com.hey.util.GenerationUtils;
-import com.hey.util.HeyHttpStatusException;
-import com.hey.util.HttpStatus;
+import com.hey.util.*;
 import com.hey.webclient.MyWebClient;
 
 import io.vertx.core.CompositeFuture;
@@ -191,36 +188,34 @@ public class APIService extends BaseService{
 
             List<Future> getUserStatusFutures = new ArrayList<>();
             List<Future> getUserOnlineFutures = new ArrayList<>();
-            List<Future> getUserStatusAndUserOnlineFutures = new ArrayList<>();
+            List<Future> checkWalletExist = new ArrayList<>();
+            List<Future> getAllFutures = new ArrayList<>();
 
             for(FriendList friendList : friendLists){
-                getUserStatusFutures.add(dataRepository.getUserStatus(friendList.getFriendUserHashes().getUserId()));
-                getUserOnlineFutures.add(isUserOnline(friendList.getFriendUserHashes().getUserId()));
+                String userID = friendList.getFriendUserHashes().getUserId();
+                getUserStatusFutures.add(dataRepository.getUserStatus(userID));
+                getUserOnlineFutures.add(isUserOnline(userID));
+                checkWalletExist.add(dataRepository.checkWalletExist(userID));
             }
-            
-            getUserStatusAndUserOnlineFutures.addAll(getUserStatusFutures);
-            getUserStatusAndUserOnlineFutures.addAll(getUserOnlineFutures);
-            
-            CompositeFuture cp = CompositeFuture.all(getUserStatusAndUserOnlineFutures);
+
+            getAllFutures.addAll(getUserStatusFutures);
+            getAllFutures.addAll(getUserOnlineFutures);
+            getAllFutures.addAll(checkWalletExist);
+            CompositeFuture cp = CompositeFuture.all(getAllFutures);
             cp.setHandler(ar -> {
                 if (ar.succeeded()) {
-
                     for(int index = 0; index < friendLists.size(); ++index){
-                    	System.out.println("number of friends:" +friendLists.size());
                         AddressBookItem addressBookItem = new AddressBookItem();
-
                         UserHash friendUserHash = friendLists.get(index).getFriendUserHashes();
-                        // va d
                         addressBookItem.setUserId(friendUserHash.getUserId());
                         addressBookItem.setName(friendUserHash.getFullName());
 
                         UserStatus friendUserStatus = cp.resultAt(index);
                         Boolean isUserOnline = cp.resultAt(index + friendLists.size());
-                        // get status no bi loi : chinh xac la co loi dung vay :
-                        
+                        Boolean isExistWallet = cp.resultAt(index + friendLists.size()*2);
                         addressBookItem.setStatus(friendUserStatus.getStatus());
                         addressBookItem.setOnline(isUserOnline);
-
+                        addressBookItem.setWallet(isExistWallet);
                         addressBookItems.add(addressBookItem);
                     }
 

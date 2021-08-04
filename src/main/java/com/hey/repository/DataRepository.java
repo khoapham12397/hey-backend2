@@ -27,6 +27,8 @@ public interface DataRepository {
 
     public Future<UserStatus> getUserStatus(String userId);
 
+    public Future<Boolean> checkWalletExist(String userId);
+
     public Future<FriendList> insertFriendList(FriendList friendList);
 
     public Future<FriendList> getFriendList(String friendListKey, String currentUserId);

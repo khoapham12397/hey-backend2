@@ -99,7 +99,6 @@ public class ProtectedApiHandler extends BaseHandler {
                             LogUtils.log("User  " + userId + " get profile " + jsonObject);
                             getUserProfile(request, response, jsonObject, userId);
                             break;
-
                     }
                 } else {
                     throw new HttpStatusException(HttpStatus.UNAUTHORIZED.code(), HttpStatus.UNAUTHORIZED.message());
@@ -138,7 +137,6 @@ public class ProtectedApiHandler extends BaseHandler {
         Future<AddressBookResponse> getAddressBookFuture = apiService.getAddressBook(userId);
 
         getAddressBookFuture.compose(addressBookResponse -> {
-
             response
                     .setStatusCode(HttpStatus.OK.code())
                     .putHeader("content-type", "application/json; charset=utf-8")

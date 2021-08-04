@@ -89,7 +89,10 @@ public class RedisCacheClient implements DataRepository {
         return "unseen:" + userId + ":" + sessionId;
     }
     
-        
+    String generateWalletKey(String userId){
+        return "wallet:"+userId;
+    }
+
     @Override
     public Future<List<String>> getKeysByPattern(String keyPattern) {
         Future<List<String>> future = Future.future();
@@ -261,7 +264,7 @@ public class RedisCacheClient implements DataRepository {
                 }else{
                 	UserStatus status =new UserStatus();
                 	status.setUserId(userId); status.setStatus("Hello");
-                    future.complete();
+                    future.complete(status);
                 }
             }else {
                 future.fail(res.cause());
@@ -270,7 +273,25 @@ public class RedisCacheClient implements DataRepository {
 
         return future;
     }
-    
+
+    @Override
+    public Future<Boolean> checkWalletExist(String userId) {
+
+        Future<Boolean> future = Future.future();
+        client.hgetall(generateWalletKey(userId), res -> {
+            if (res.succeeded()) {
+                if(res.result().getString("balance") != null) {
+                    future.complete(true);
+                }else{
+                    future.complete(false);
+                }
+            }else {
+                future.fail(res.cause());
+            }
+        });
+
+        return future;
+    }
     
     @Override
     public Future<FriendList> insertFriendList(FriendList friendList) {

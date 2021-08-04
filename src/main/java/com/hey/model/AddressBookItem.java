@@ -5,7 +5,7 @@ public class AddressBookItem {
     private String userId;
     private String status;
     private boolean online;
-
+    private boolean wallet;
     public String getName() {
         return name;
     }
@@ -37,4 +37,8 @@ public class AddressBookItem {
     public void setOnline(boolean online) {
         this.online = online;
     }
+    public void setWallet(boolean wallet) {
+        this.wallet = wallet;
+    }
+    public boolean getWallet(){return wallet;}
 }

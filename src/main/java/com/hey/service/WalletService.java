@@ -317,14 +317,11 @@ public class WalletService {
 	
 	public Future<SendP2PResponse> sendP2P(SendP2PRequest rq, String userId){
 		Future<SendP2PResponse> future = Future.future();
-		Future<String> getUserIdFuture = redisCache.getUserIdByUsername(rq.getUsername());
+		String receiverId = rq.getUserId();
 		Future<WalletResponse> walletFuture = redisCache.getWallet(userId);
-		
-		CompositeFuture cp = CompositeFuture.all(getUserIdFuture, walletFuture);
-		cp.setHandler(ar->{
+		walletFuture.setHandler(ar->{
 			if(ar.succeeded()) {
-				String receiverId = cp.resultAt(0);
-				WalletResponse wallet = cp.resultAt(1);
+				WalletResponse wallet = ar.result();
 				String hashedPin = wallet.getHashedPin();
 				
 				if(wallet!=null && hashedPin.equals(rq.getPin())) {
@@ -353,15 +350,16 @@ public class WalletService {
 							System.out.println("ReceiverId: "+ receiverId);
 							channelManager.sendMessage(msg, receiverId);
 							*/
-							Future<String> getUsernameFuture= redisCache.getUsername(userId);
-							getUsernameFuture.setHandler(ar2->{
+							Future<String> getNameSenderFuture = redisCache.getNameByUserId(userId);
+							Future<String> getNameReceiverFuture = redisCache.getNameByUserId(receiverId);
+							CompositeFuture cp = CompositeFuture.all(getNameSenderFuture, getNameReceiverFuture);
+							cp.setHandler(ar2->{
 								P2PTransaction ts =new P2PTransaction();
 								ts.setAmount(rq.getAmount());
-								ts.setSender(ar2.result()); ts.setReceiver(rq.getUsername());
+								ts.setSender(cp.resultAt(0)); ts.setReceiver(cp.resultAt(1));
 								ts.setTransactionId(response.getTransactionId());
 								ts.setTimestamp(response.getTimestamp());
 								processMessageP2P(ts, userId, receiverId);
-								
 							});
 						}
 						else {

@@ -324,49 +324,7 @@ public class WalletPublicHandler {
 		},Future.future().setHandler(handler->{handleException(handler.cause(), response);}));
 	}
 	
-	
-	
-	private void processMessageP2P(SendP2PRequest request , String userId) {
-		System.out.println("username:"+request.getUsername());
-		Future<String> getIdFuture = redisCache.getUserIdByUsername(request.getUsername());
-		getIdFuture.setHandler(ar->{
-			if(ar.succeeded()) {
-				Future<String> findSessionId = redisCache.findSessionIdTwoPerson(userId, ar.result());
-				Future<String> getUsernameFuture = redisCache.findUsernameById(userId);
-				
-				CompositeFuture cp = CompositeFuture.all(getUsernameFuture,findSessionId);
-				cp.setHandler(ar1->{
-					if(ar1.succeeded()) {
-						String sender = cp.resultAt(0);
-						String sessionId = cp.resultAt(1);
-						
-						List<String> usernames = new ArrayList<>();
-						usernames.add(sender); usernames.add(request.getUsername());
-						
-						ChatMessageRequest msg = new ChatMessageRequest();
-						msg.setGroupChat(false);
-						
-						if(sessionId==null) msg.setSessionId("-1");
-						else msg.setSessionId(sessionId);
-						
-						msg.setType(IWsMessage.TYPE_CHAT_MESSAGE_RESPONSE);
-						msg.setUsernames(usernames);
-						msg.setMessage(sender + "-SEND-"+ request.getUsername() + "-AMOUNT-"+request.getAmount());
-						wsHandler.insertChatMessageOnExistedChatSessionId(msg, null, userId);
-					}
-				});
-			}
-		
-		});
-		
-		
-		
-	}
-	
-	
 	public void sendP2P(HttpServerRequest request , HttpServerResponse response,JsonObject jsonObject ,String userId) {
-		
-		
 		SendP2PRequest rq = jsonObject.mapTo(SendP2PRequest.class);
 		
 		Future<SendP2PResponse> future = walletService.sendP2P(rq, userId);
@@ -376,10 +334,6 @@ public class WalletPublicHandler {
 			response.setStatusCode(HttpStatus.OK.code())
 			.putHeader("content-type", "application/json; charset=utf-8")
 			.end(JsonUtils.toSuccessJSON(result));
-			
-			
-			 
-			
 			
 		},Future.future().setHandler(handler->{handleException(handler.cause(), response);}));
 

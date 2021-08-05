@@ -589,8 +589,16 @@ public class RedisCacheExtend  {
 		});
 		return future;
 	}
-	
-	
+
+	public Future<String> getNameByUserId(String userId){
+		Future<String> future = Future.future();
+		System.out.println("Find userId :" + userId);
+		client.hget("user_full:"+userId,"full_name", ar->{
+			if(ar.succeeded()) future.complete(ar.result());
+			else future.fail(ar.cause());
+		});
+		return future;
+	}
 	
 	public Future<Void> insertChatPair(String sessionId, String userId1 ,String userId2){
 		Future<Void> future =Future.future();

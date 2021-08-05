@@ -6,13 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="97b5deda-9051-40de-9661-5af2dd5738c6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/cache/client/RedisCacheClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/cache/client/RedisCacheClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/handler/ProtectedApiHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/handler/ProtectedApiHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/model/AddressBookItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/model/AddressBookItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/repository/DataRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/repository/DataRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/service/APIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/service/APIService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/cache/client/RedisCacheClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/cache/client/RedisCacheClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/handler/ProtectedApiHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/handler/ProtectedApiHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/cache/client/RedisCacheExtend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/cache/client/RedisCacheExtend.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/handler/WalletProtectedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/handler/WalletProtectedHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/handler/WalletPublicHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/handler/WalletPublicHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/service/WalletService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/service/WalletService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/walletmodel/SendP2PRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/walletmodel/SendP2PRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/walletmodel/SendP2PResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/walletmodel/SendP2PResponse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

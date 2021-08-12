@@ -401,57 +401,58 @@ public class WalletService {
 		*/
 		return future;
 	}
-	// vi du the nay :
-	// neu ma lam ay d:
-	
-	
+
 	public Future<Present> createLixi(CreatePresentRequest rq, String userId) {
 		Future<Present> future= Future.future();
 		Future<Boolean>  userInSessionFuture = redisCache.userInSession(userId, rq.getSessionId());
-		userInSessionFuture.compose(result->{
-			if(result) {
-				
-				Present present= new Present();
-				present.setPresentId(GenerationUtils.generateId());
-				
-				present.setStartTime(System.currentTimeMillis());
-				present.setUserId(userId);
-				present.setSessionId(rq.getSessionId());
-				present.setTotalAmount(rq.getAmount());
-				
-				JsonObject body = JsonObject.mapFrom(rq);
-				body.put("userId", userId);
-				body.put("presentId", present.getPresentId());
-				
-				Future<Present> insertPresentFuture = redisCache.insertLixi(present);
-				insertPresentFuture.setHandler(ar->{
-				if(ar.succeeded()) {
-					Future<JsonObject> callFuture = webClient.callPostService("/createPresent", body);
-					callFuture.compose(res->{
-						if(res.getBoolean("code")) {
-							future.complete(present);
-							processMsgCreateLixi(present);
-							
-						}
-						else {
-							redisCache.removeLixi(present.getPresentId(), present.getSessionId());
-							
-							future.fail(res.getString("message"));
-						}
-					}, Future.future().setHandler(handler->{
-						future.fail(handler.cause());
-					}));
-				}
-				else future.fail(ar.cause());
-				});
+		String pin = rq.getPin();
+		Future<WalletResponse> walletFuture = redisCache.getWallet(userId);
+		CompositeFuture cp = CompositeFuture.all(userInSessionFuture, walletFuture);
+		cp.setHandler(ar->{
+			if (ar.succeeded()){
+				WalletResponse wallet = cp.resultAt(1);
+				String hashedPin = wallet.getHashedPin();
+				Boolean result = cp.resultAt(0);
+				if(result && pin.equals(hashedPin)) {
 
-				
-				
+					Present present= new Present();
+					present.setPresentId(GenerationUtils.generateId());
+
+					present.setStartTime(System.currentTimeMillis());
+					present.setUserId(userId);
+					present.setSessionId(rq.getSessionId());
+					present.setTotalAmount(rq.getAmount());
+
+					JsonObject body = JsonObject.mapFrom(rq);
+					body.put("userId", userId);
+					body.put("presentId", present.getPresentId());
+
+					Future<Present> insertPresentFuture = redisCache.insertLixi(present);
+					insertPresentFuture.setHandler(ar1->{
+						if(ar1.succeeded()) {
+							Future<JsonObject> callFuture = webClient.callPostService("/createPresent", body);
+							callFuture.compose(res->{
+								if(res.getBoolean("code")) {
+									future.complete(present);
+									processMsgCreateLixi(present);
+
+								}
+								else {
+									redisCache.removeLixi(present.getPresentId(), present.getSessionId());
+
+									future.fail(res.getString("message"));
+								}
+							}, Future.future().setHandler(handler->{
+								future.fail(handler.cause());
+							}));
+						}
+						else future.fail(ar1.cause());
+					});
+				}
+			}else {
+				future.fail(ar.cause());
 			}
-			
-		},Future.future().setHandler(handler->{
-			future.fail(handler.cause());
-		}));
+		});
 		
 		return future;
 	}

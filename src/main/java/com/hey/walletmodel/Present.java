@@ -9,6 +9,10 @@ public class Present {
 	private String sessionId;
 	private Long startTime;
 	private String presentId;
+	private Boolean expired;
+	private Long envelope;
+	private Boolean type;
+
 	public String getPresentId() {
 		return presentId;
 	}
@@ -32,24 +36,31 @@ public class Present {
 	public void setTotalAmount(Long totalAmount) {
 		this.totalAmount = totalAmount;
 	}
+
 	public String getSessionId() {
 		return sessionId;
 	}
 	public void setSessionId(String sessionId) {
 		this.sessionId = sessionId;
 	}
+
 	public Long getStartTime() {
 		return startTime;
 	}
 	public void setStartTime(Long startTime) {
 		this.startTime = startTime;
 	}
+
 	public Boolean getExpired() {
 		return expired;
 	}
 	public void setExpired(Boolean expired) {
 		this.expired = expired;
 	}
-	private Boolean expired;
-	
+
+	public Long getEnvelope(){return envelope;}
+	public void setEnvelope(Long envelope){this.envelope=envelope;}
+
+	public Boolean getType(){return type;}
+	public void setType(Boolean type){this.type=type;}
 }

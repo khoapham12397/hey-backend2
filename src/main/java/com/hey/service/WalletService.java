@@ -423,7 +423,7 @@ public class WalletService {
 					present.setSessionId(rq.getSessionId());
 					present.setTotalAmount(rq.getAmount());
 					present.setEnvelope(rq.getEnvelope());
-					present.setType(rq.getType());
+					present.setEqual(rq.getEqual());
 
 					JsonObject body = JsonObject.mapFrom(rq);
 					body.put("userId", userId);

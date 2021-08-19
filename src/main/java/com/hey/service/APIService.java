@@ -140,8 +140,8 @@ public class APIService extends BaseService{
                         ChatList chatList = chatLists.get(index);
 
                         ChatListItem chatListItem = new ChatListItem();
-
-                        List<String> listFullNameExcludedCurrentUser = getListFullNameExcludedCurrentUser(userId, chatList.getUserHashes());
+                        List<UserHash> listUserHashes = chatList.getUserHashes();
+                        List<String> listFullNameExcludedCurrentUser = getListFullNameExcludedCurrentUser(userId, listUserHashes);
                         if(listFullNameExcludedCurrentUser.size() > 1){
                             String groupName = listFullNameExcludedCurrentUser.stream()
                                     .map(fullName -> fullName.split(" ")[0])
@@ -150,6 +150,11 @@ public class APIService extends BaseService{
                             chatListItem.setGroupChat(true);
                         }else{
                             chatListItem.setName(listFullNameExcludedCurrentUser.get(0));
+                            for (UserHash userHash: listUserHashes){
+                                if (userHash.getUserId()!=userId){
+                                    chatListItem.setUserId(userHash.getUserId());
+                                }
+                            }
                         }
                         chatListItem.setSessionId(chatList.getSessionId());
                         chatListItem.setUnread(unSeenCount.intValue());

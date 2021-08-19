@@ -9,13 +9,11 @@ public class ChatListItem {
     private int unread;
     private boolean groupChat;
     private Date updatedDate;
-  
+    private String userId;
     
     public String getName() {
         return name;
     }
-   
-    
     public void setName(String name) {
         this.name = name;
     }
@@ -23,7 +21,6 @@ public class ChatListItem {
     public String getSessionId() {
         return sessionId;
     }
-
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
     }
@@ -31,7 +28,6 @@ public class ChatListItem {
     public String getLastMessage() {
         return lastMessage;
     }
-
     public void setLastMessage(String lastMessage) {
         this.lastMessage = lastMessage;
     }
@@ -39,7 +35,6 @@ public class ChatListItem {
     public int getUnread() {
         return unread;
     }
-
     public void setUnread(int unread) {
         this.unread = unread;
     }
@@ -47,7 +42,6 @@ public class ChatListItem {
     public boolean getGroupChat() {
         return groupChat;
     }
-
     public void setGroupChat(boolean groupChat) {
         this.groupChat = groupChat;
     }
@@ -55,8 +49,10 @@ public class ChatListItem {
     public Date getUpdatedDate() {
         return updatedDate;
     }
-
     public void setUpdatedDate(Date updatedDate) {
         this.updatedDate = updatedDate;
     }
+
+    public String getUserId(){return userId;}
+    public void setUserId(String userId){this.userId=userId;}
 }

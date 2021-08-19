@@ -6,9 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="97b5deda-9051-40de-9661-5af2dd5738c6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/handler/WsHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/handler/WsHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/model/ChatList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/model/ChatList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/model/ChatListItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/model/ChatListItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/service/APIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/service/APIService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/service/WalletService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/service/WalletService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/walletmodel/CreatePresentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/walletmodel/CreatePresentRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/walletmodel/Present.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/walletmodel/Present.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/handler/WsHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/handler/WsHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/ChatList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/ChatList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/service/WalletService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/service/WalletService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

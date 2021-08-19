@@ -441,7 +441,6 @@ public class WalletService {
 								}
 								else {
 									redisCache.removeLixi(present.getPresentId(), present.getSessionId());
-
 									future.fail(res.getString("message"));
 								}
 							}, Future.future().setHandler(handler->{

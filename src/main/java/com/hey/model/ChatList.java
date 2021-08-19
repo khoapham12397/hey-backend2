@@ -9,10 +9,6 @@ public class ChatList implements Serializable {
     private String sessionId;
     private Date updatedDate;
     private String lastMessage;
-    // sessionId vay thi co luu lai cai kia ???
-    // sessionId la cai gi vvay ???
-    // ro rang la cai gi ??
-    // dung vay do :
     
     public List<UserHash> getUserHashes() {
         return userHashes;

@@ -34,10 +34,7 @@ public class WsHandler extends BaseHandler{
     public void setUserWsChannelManager(UserWsChannelManager userWsChannelManager) {
         this.userWsChannelManager = userWsChannelManager;
     }
-    
-   
-    
-    
+
     public void handleChatContainerRequest(ChatContainerRequest request, String channelId, String userId) {
         String sessionId = request.getSessionId();
         // 

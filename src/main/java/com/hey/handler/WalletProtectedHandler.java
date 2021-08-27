@@ -65,10 +65,7 @@ public class WalletProtectedHandler {
 	public void setRedisCache(RedisCacheExtend redisCache) {
 		this.redisCache = redisCache;
 	}
-	public WalletProtectedHandler(WalletService walletService) {
-	
-		this.walletService = walletService;
-	}
+	public WalletProtectedHandler(WalletService walletService) {this.walletService = walletService;}
 	public void setWsHanlder(WsHandler wsHandler) {
 		this.wsHandler = wsHandler;
 	}
@@ -82,30 +79,21 @@ public class WalletProtectedHandler {
 		this.walletService = walletService;
 	}
 
-
-
 	public UserWsChannelManager getChanelManager() {
 		return chanelManager;
 	}
-
-
 
 	public void setChanelManager(UserWsChannelManager chanelManager) {
 		this.chanelManager = chanelManager;
 	}
 
-
-
 	public JwtManager getJwtManager() {
 		return jwtManager;
 	}
 
-
-
 	public void setJwtManager(JwtManager jwtManager) {
 		this.jwtManager = jwtManager;
 	}
-
 
 	public static final String AUTHENTICATION_SCHEME = "Bearer";
     private JwtManager jwtManager;

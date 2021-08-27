@@ -9,7 +9,7 @@ public class SendP2PResponse {
 		this.code = code;
 	}
 	private String message;
-	private Long transactionId;
+	private String transactionId;
 	private Long timestamp;
 	private Long amount;
 	
@@ -19,10 +19,10 @@ public class SendP2PResponse {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public Long getTransactionId() {
+	public String getTransactionId() {
 		return transactionId;
 	}
-	public void setTransactionId(Long transactionId) {
+	public void setTransactionId(String transactionId) {
 		this.transactionId = transactionId;
 	}
 	public Long getTimestamp() {

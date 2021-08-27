@@ -11,6 +11,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mindrot.jbcrypt.BCrypt;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -73,7 +75,8 @@ public class DataRepositoryTestSuite extends BaseVerticleTestSuite {
 
         UserAuth userAuth = new UserAuth();
         userAuth.setUserName("testInsertUserAuth");
-        userAuth.setUserId(GenerationUtils.generateId());
+        String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyMMdd-"));
+        userAuth.setUserId(date + "999999999");
         userAuth.setHashedPassword(BCrypt.hashpw("123", BCrypt.gensalt()));
 
         Future<UserAuth> future = getDataRepository().insertUserAuth(userAuth);
@@ -119,7 +122,8 @@ public class DataRepositoryTestSuite extends BaseVerticleTestSuite {
         final Async async = context.async();
 
         UserFull userFull = new UserFull();
-        userFull.setUserId(GenerationUtils.generateId());
+        String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyMMdd-"));
+        userFull.setUserId(date + "999999999");
         userFull.setUserName("testInsertUserFull");
         userFull.setFullName("Test insert user full");
 
@@ -166,7 +170,8 @@ public class DataRepositoryTestSuite extends BaseVerticleTestSuite {
         final Async async = context.async();
 
         UserStatus userStatus = new UserStatus();
-        userStatus.setUserId(GenerationUtils.generateId());
+        String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyMMdd-"));
+        userStatus.setUserId(date + "999999998");
         userStatus.setStatus("Test status");
 
         Future<UserStatus> future = getDataRepository().insertUserStatus(userStatus);
@@ -245,7 +250,7 @@ public class DataRepositoryTestSuite extends BaseVerticleTestSuite {
         final Async async = context.async();
 
         Future<FriendList> future =
-                getDataRepository().getFriendList("friend:list:" + getUserIdToTest()+ ":" + GenerationUtils.generateId(), getUserIdToTest());
+                getDataRepository().getFriendList("friend:list:" + getUserIdToTest()+ ":" + GenerationUtils.generateRandomId(), getUserIdToTest());
         future.compose(friendList -> {
             context.assertNull(friendList);
             async.complete();
@@ -260,7 +265,7 @@ public class DataRepositoryTestSuite extends BaseVerticleTestSuite {
         final Async async = context.async();
 
         ChatList chatList = new ChatList();
-        chatList.setSessionId(GenerationUtils.generateId());
+        chatList.setSessionId(GenerationUtils.generateUUID());
         chatList.setUpdatedDate(new Date());
         chatList.setLastMessage("Test last message");
         List<UserHash> userHashes = new ArrayList<>();
@@ -298,7 +303,7 @@ public class DataRepositoryTestSuite extends BaseVerticleTestSuite {
         final Async async = context.async();
 
         Future<ChatList> future =
-                getDataRepository().getChatList("chat:list:" + getSessionIdToTest() + ":" + getUserIdToTest() + ":" + GenerationUtils.generateId());
+                getDataRepository().getChatList("chat:list:" + getSessionIdToTest() + ":" + getUserIdToTest() + ":" + GenerationUtils.generateRandomId());
         future.compose(chatList -> {
             context.assertNull(chatList);
             async.complete();
@@ -314,7 +319,7 @@ public class DataRepositoryTestSuite extends BaseVerticleTestSuite {
 
         ChatMessage chatMessage = new ChatMessage();
         chatMessage.setUserHash(new UserHash("testInsertChatMessageId", "testInsertChatMessageFullName"));
-        chatMessage.setSessionId(GenerationUtils.generateId());
+        chatMessage.setSessionId(GenerationUtils.generateUUID());
         chatMessage.setMessage("test insert chat message");
         chatMessage.setCreatedDate(new Date());
 
@@ -355,7 +360,7 @@ public class DataRepositoryTestSuite extends BaseVerticleTestSuite {
     public void test_getChatMessage_withNotExistChatMessage_shouldBeNull(TestContext context) {
         final Async async = context.async();
 
-        Future<ChatMessage> future = getDataRepository().getChatMessage("chat:message:" + getSessionIdToTest() + ":" + GenerationUtils.generateId());
+        Future<ChatMessage> future = getDataRepository().getChatMessage("chat:message:" + getSessionIdToTest() + ":" + GenerationUtils.generateRandomId());
         future.compose(chatMessage -> {
             context.assertNull(chatMessage);
             async.complete();
@@ -370,7 +375,7 @@ public class DataRepositoryTestSuite extends BaseVerticleTestSuite {
     public void test_increaseUnseenCount_withValidUserIdAndSessionId_shouldSuccess(TestContext context) {
         final Async async = context.async();
 
-        Future<Long> future = getDataRepository().increaseUnseenCount(GenerationUtils.generateId(), GenerationUtils.generateId());
+        Future<Long> future = getDataRepository().increaseUnseenCount(GenerationUtils.generateRandomId(), GenerationUtils.generateUUID());
         future.compose(unSeenCount -> {
             context.assertTrue(unSeenCount > 0);
             async.complete();
@@ -399,7 +404,7 @@ public class DataRepositoryTestSuite extends BaseVerticleTestSuite {
     public void test_getUnseenCount_withUserNotHaveUnseenMessage_shouldBeZero(TestContext context) {
         final Async async = context.async();
 
-        Future<Long> future = getDataRepository().getUnseenCount(GenerationUtils.generateId(), getSessionIdToTest());
+        Future<Long> future = getDataRepository().getUnseenCount(GenerationUtils.generateRandomId(), getSessionIdToTest());
         future.compose(unSeenCount -> {
             context.assertTrue(unSeenCount == 0);
             async.complete();
@@ -414,7 +419,7 @@ public class DataRepositoryTestSuite extends BaseVerticleTestSuite {
     public void test_deleteUnseenCount_withValidUserIdAndSessionId_shouldSuccess(TestContext context) {
         final Async async = context.async();
 
-        Future<Long> future = getDataRepository().deleteUnseenCount(GenerationUtils.generateId(), GenerationUtils.generateId());
+        Future<Long> future = getDataRepository().deleteUnseenCount(GenerationUtils.generateRandomId(), GenerationUtils.generateUUID());
         checkResultSuccess(context, async, future);
     }
 
@@ -422,7 +427,7 @@ public class DataRepositoryTestSuite extends BaseVerticleTestSuite {
     public void test_deleteFriend_withValidUserIdAndFriendId_shouldSuccess(TestContext context) {
         final Async async = context.async();
 
-        Future<Long> future = getDataRepository().deleteFriend(GenerationUtils.generateId(), GenerationUtils.generateId());
+        Future<Long> future = getDataRepository().deleteFriend(GenerationUtils.generateRandomId(), GenerationUtils.generateRandomId());
         checkResultSuccess(context, async, future);
     }
 

@@ -79,33 +79,35 @@ public class APIService extends BaseService{
             if (existedUserAuth != null) {
                 throw new HeyHttpStatusException(HttpStatus.BAD_REQUEST.code(), ErrorCode.REGISTER_USERNAME_UNIQUED.code(), "User Name is duplicated");
             }else{
-            	
-            	String userId =GenerationUtils.generateId();
-            	
-            	user.setUserId(userId);
-            	
-            	System.out.println("new user id: "+user.getUserId());
-            	
-            	JsonObject obj =new JsonObject();
-            
-            	obj.put("userId", userId);
-            	obj.put("username", user.getUserName());
-            	obj.put("fullname",user.getFullName());
-            	obj.put("password", user.getPassword());
-            	
-            	
-            	System.out.println("call to register: "+ user.getFullName() +" ,"+user.getUserName()+" "+user.getPassword());
-                Future<JsonObject> callFuture = webClient.callPostService("/registerUser", obj);
-            	Future<User> insertUserFuture = insertUser(user);
-              
-                CompositeFuture cp = CompositeFuture.all(insertUserFuture,callFuture);
+            	Future<String> generateId = GenerationUtils.generateId("user");
+                generateId.setHandler(stringAsyncResult -> {
+                    if (stringAsyncResult.succeeded()) {
+                        user.setUserId(stringAsyncResult.result());
+                        System.out.println("new user id: "+user.getUserId());
 
-                cp.setHandler(ar->{
-                	if(ar.succeeded()) {
-                		future.complete(cp.resultAt(0));
-                	}
-                	else future.fail(ar.cause());
+                        JsonObject obj =new JsonObject();
+                        obj.put("userId", user.getUserId());
+                        obj.put("username", user.getUserName());
+                        obj.put("fullname",user.getFullName());
+                        obj.put("password", user.getPassword());
+
+                        System.out.println("call to register: "+ user.getFullName() +" ,"+user.getUserName()+" "+user.getPassword());
+                        Future<JsonObject> callFuture = webClient.callPostService("/registerUser", obj);
+                        Future<User> insertUserFuture = insertUser(user);
+
+                        CompositeFuture cp = CompositeFuture.all(insertUserFuture,callFuture);
+
+                        cp.setHandler(ar->{
+                            if(ar.succeeded()) {
+                                future.complete(cp.resultAt(0));
+                            }
+                            else future.fail(ar.cause());
+                        });
+                    }else
+                        future.fail(stringAsyncResult.cause());
                 });
+            	
+
                 
             }
           
@@ -151,7 +153,8 @@ public class APIService extends BaseService{
                         }else{
                             chatListItem.setName(listFullNameExcludedCurrentUser.get(0));
                             for (UserHash userHash: listUserHashes){
-                                if (userHash.getUserId()!=userId){
+                                if (!userHash.getUserId().equals(userId)){
+                                    System.out.println(userId + " " + userHash.getUserId());
                                     chatListItem.setUserId(userHash.getUserId());
                                 }
                             }

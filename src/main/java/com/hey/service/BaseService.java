@@ -21,6 +21,8 @@ import org.apache.commons.lang3.RandomUtils;
 import org.mindrot.jbcrypt.BCrypt;
 import se.emirbuc.randomsentence.RandomSentences;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -46,13 +48,11 @@ public abstract class BaseService {
     public void setJwtManager(JwtManager jwtManager) {
         this.jwtManager = jwtManager;
     }
-    // hop ly na: 
+
     public Future<User> insertUser(User user) {
-
         Future<User> future = Future.future();
-
         UserAuth userAuth = new UserAuth();
-        user.setUserId(user.getUserId() != null ? user.getUserId() : GenerationUtils.generateId());
+        //user.setUserId(user.getUserId() != null ? user.getUserId() : GenerationUtils.generateId("user"));
         userAuth.setUserName(user.getUserName());
         userAuth.setUserId(user.getUserId());
         userAuth.setHashedPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(5)));
@@ -275,8 +275,10 @@ public abstract class BaseService {
 
         List<User> users = new ArrayList<>();
 
+        String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyMMdd-"));
+
         User vcthanh24 = new User();
-        vcthanh24.setUserId(GenerationUtils.generateId());
+        vcthanh24.setUserId(date + "-00000999");
         vcthanh24.setUserName("vcthanh24");
         vcthanh24.setPassword("123");
         vcthanh24.setFullName("Vo Cong Thanh");
@@ -288,7 +290,7 @@ public abstract class BaseService {
         users.add(vcthanh24);
 
         User lvhung = new User();
-        lvhung.setUserId(GenerationUtils.generateId());
+        lvhung.setUserId(date + "00001000");
         lvhung.setUserName("lvhung");
         lvhung.setPassword("123");
         lvhung.setFullName("Le Vu Hung");
@@ -300,7 +302,7 @@ public abstract class BaseService {
         users.add(lvhung);
 
         User nthnhung = new User();
-        nthnhung.setUserId(GenerationUtils.generateId());
+        nthnhung.setUserId(date + "00001001");
         nthnhung.setUserName("nthnhung");
         nthnhung.setPassword("123");
         nthnhung.setFullName("Nguyen Thi Hong Nhung");
@@ -312,7 +314,7 @@ public abstract class BaseService {
         users.add(nthnhung);
 
         User forTesting = new User();
-        forTesting.setUserId(GenerationUtils.generateId());
+        forTesting.setUserId(date + "00001002");
         forTesting.setUserName("utest");
         forTesting.setPassword("123");
         forTesting.setFullName("Unit Test");
@@ -328,7 +330,7 @@ public abstract class BaseService {
             Name name = listRandomName.get(i);
 
             User user = new User();
-            user.setUserId(GenerationUtils.generateId());
+            user.setUserId(date + String.format("%08d", i+1003));
             String userName = name.toString().trim().toLowerCase().replace(" ", "_");
             user.setUserName("user" + userName);
             user.setPassword("123");
@@ -438,7 +440,7 @@ public abstract class BaseService {
         userHashesForThanhHung.add(new UserHash(users.get(0).getUserId(), users.get(0).getFullName()));
         userHashesForThanhHung.add(new UserHash(users.get(1).getUserId(), users.get(1).getFullName()));
         chatListForThanhHung.setUserHashes(userHashesForThanhHung);
-        chatListForThanhHung.setSessionId(GenerationUtils.generateId());
+        chatListForThanhHung.setSessionId(GenerationUtils.generateUUID());
         chatListForThanhHung.setUpdatedDate(previousYear);
         chatLists.add(chatListForThanhHung);
 
@@ -457,7 +459,7 @@ public abstract class BaseService {
             userHashesForThanh.add(new UserHash(users.get(0).getUserId(), users.get(0).getFullName()));
             userHashesForThanh.add(new UserHash(users.get(i).getUserId(), users.get(i).getFullName()));
             chatListForThanh.setUserHashes(userHashesForThanh);
-            chatListForThanh.setSessionId(GenerationUtils.generateId());
+            chatListForThanh.setSessionId(GenerationUtils.generateUUID());
             chatListForThanh.setUpdatedDate(previousYear);
 
             ChatList chatListForHung = new ChatList();
@@ -465,7 +467,7 @@ public abstract class BaseService {
             userHashesForHung.add(new UserHash(users.get(1).getUserId(), users.get(1).getFullName()));
             userHashesForHung.add(new UserHash(users.get(i).getUserId(), users.get(i).getFullName()));
             chatListForHung.setUserHashes(userHashesForHung);
-            chatListForHung.setSessionId(GenerationUtils.generateId());
+            chatListForHung.setSessionId(GenerationUtils.generateUUID());
             chatListForHung.setUpdatedDate(previousYear);
 
             chatLists.add(chatListForThanh);

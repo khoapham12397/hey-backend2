@@ -416,38 +416,44 @@ public class WalletService {
 				if(result && pin.equals(hashedPin)) {
 
 					Present present= new Present();
-					present.setPresentId(GenerationUtils.generateId());
+					Future<String> transId = GenerationUtils.generateId("trans");
+					transId.setHandler(stringAsyncResult -> {
+						if (stringAsyncResult.succeeded()){
+							present.setPresentId(stringAsyncResult.result());
+							present.setStartTime(System.currentTimeMillis());
+							present.setUserId(userId);
+							present.setSessionId(rq.getSessionId());
+							present.setTotalAmount(rq.getAmount());
+							present.setEnvelope(rq.getEnvelope());
+							present.setEqual(rq.getEqual());
 
-					present.setStartTime(System.currentTimeMillis());
-					present.setUserId(userId);
-					present.setSessionId(rq.getSessionId());
-					present.setTotalAmount(rq.getAmount());
-					present.setEnvelope(rq.getEnvelope());
-					present.setEqual(rq.getEqual());
+							JsonObject body = JsonObject.mapFrom(rq);
+							body.put("userId", userId);
+							body.put("presentId", present.getPresentId());
 
-					JsonObject body = JsonObject.mapFrom(rq);
-					body.put("userId", userId);
-					body.put("presentId", present.getPresentId());
+							Future<Present> insertPresentFuture = redisCache.insertLixi(present);
+							insertPresentFuture.setHandler(ar1->{
+								if(ar1.succeeded()) {
+									Future<JsonObject> callFuture = webClient.callPostService("/createPresent", body);
+									callFuture.compose(res->{
+										if(res.getBoolean("code")) {
+											future.complete(present);
+											processMsgCreateLixi(present);
 
-					Future<Present> insertPresentFuture = redisCache.insertLixi(present);
-					insertPresentFuture.setHandler(ar1->{
-						if(ar1.succeeded()) {
-							Future<JsonObject> callFuture = webClient.callPostService("/createPresent", body);
-							callFuture.compose(res->{
-								if(res.getBoolean("code")) {
-									future.complete(present);
-									processMsgCreateLixi(present);
-
+										}
+										else {
+											redisCache.removeLixi(present.getPresentId(), present.getSessionId());
+											future.fail(res.getString("message"));
+										}
+									}, Future.future().setHandler(handler->{
+										future.fail(handler.cause());
+									}));
 								}
-								else {
-									redisCache.removeLixi(present.getPresentId(), present.getSessionId());
-									future.fail(res.getString("message"));
-								}
-							}, Future.future().setHandler(handler->{
-								future.fail(handler.cause());
-							}));
+								else future.fail(ar1.cause());
+							});
+						}else{
+							future.fail(stringAsyncResult.cause());
 						}
-						else future.fail(ar1.cause());
 					});
 				}
 			}else {
@@ -576,7 +582,7 @@ public class WalletService {
 				ts.setSender(sender); ts.setReceiver(receiver);
 				ts.setTimestamp(obj.getLong("timestamp"));
 				ts.setAmount(obj.getLong("amount"));
-				ts.setTransactionId(obj.getLong("id"));
+				ts.setTransactionId(obj.getString("id"));
 				future.complete(ts);
 			}
 		});

@@ -16,6 +16,7 @@ import com.hey.repository.DataRepository;
 import com.hey.service.APIService;
 import com.hey.service.AuthenticationService;
 import com.hey.service.WalletService;
+import com.hey.util.GenerationUtils;
 import com.hey.util.PropertiesUtils;
 import com.hey.webclient.MyWebClient;
 
@@ -62,8 +63,9 @@ public class HeyVerticle extends AbstractVerticle {
         LOGGER.info("Starting Inject Dependency for verticle {}", Thread.currentThread().getName());
         System.out.println("Redist host: "+PropertiesUtils.getInstance().getValue("redis.host"));
         RedisClient client = RedisClient.create(vertx,
-                new RedisOptions().setHost(PropertiesUtils.getInstance().getValue("redis.host")));
-        // dau tien no chua co hinh thanh lien ket hay bat cu thu gi ??
+                new RedisOptions().setHost(PropertiesUtils.getInstance().getValue("redis.host"))
+                        .setPort(PropertiesUtils.getInstance().getIntValue("redis.port"))
+                        .setAuth(PropertiesUtils.getInstance().getValue("redis.auth")));
         
         DataRepository repository = new RedisCacheClient(client);
         
@@ -135,6 +137,7 @@ public class HeyVerticle extends AbstractVerticle {
         walletProtectedHandler.setChanelManager(userWsChannelManager);
         walletProtectedHandler.setJwtManager(jwtManager);
         walletProtectedHandler.setRedisCache(redisCache);
+        GenerationUtils.setRedis(redisCache);
         apiServer.setWalletProtectedHandler(walletProtectedHandler);
         
         wsHandler.setRedisCache(redisCache);

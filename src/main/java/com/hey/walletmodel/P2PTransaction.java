@@ -5,7 +5,7 @@ public class P2PTransaction {
 	private String receiver;//username
 	private Long amount;
 	private Long timestamp;
-	private Long transactionId;
+	private String transactionId;
 	
 	public String getSender() {
 		return sender;
@@ -31,11 +31,8 @@ public class P2PTransaction {
 	public void setTimestamp(Long timestamp) {
 		this.timestamp = timestamp;
 	}
-	public Long getTransactionId() {
+	public String getTransactionId() {
 		return transactionId;
 	}
-	public void setTransactionId(Long transactionId) {
-		this.transactionId = transactionId;
-	}
-	
+	public void setTransactionId(String transactionId) {this.transactionId = transactionId;}
 }

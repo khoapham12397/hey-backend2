@@ -87,7 +87,7 @@ public class WsHandler extends BaseHandler{
             for(UserFull userFull : userFulls){
                 userHashes.add(new UserHash(userFull.getUserId(), userFull.getFullName()));
             }
-            String sessionId = GenerationUtils.generateId();
+            String sessionId = GenerationUtils.generateUUID();
            
             ChatMessage chatMessage = new ChatMessage();
             chatMessage.setUserHash(userHashes.get(0));

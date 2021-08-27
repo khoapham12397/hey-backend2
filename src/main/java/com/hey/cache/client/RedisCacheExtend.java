@@ -34,9 +34,7 @@ public class RedisCacheExtend  {
 	private RedisClient client;
 	private Integer numScanCount;
 	private MyWebClient webClient;
-	
-	
-	
+
 	public MyWebClient getWebClient() {
 		return webClient;
 	}
@@ -48,7 +46,6 @@ public class RedisCacheExtend  {
 	public RedisCacheExtend(RedisClient client) {
 		this.client = client;
         numScanCount = Integer.parseInt(PropertiesUtils.getInstance().getValue("scan.count"));
-
 	}
 	
 	private String generateProfileKey(String userId) {
@@ -66,7 +63,6 @@ public class RedisCacheExtend  {
 	private String generateAuthenKey(String userId) {
 		return "authenticate:"+userId;
 	}
-	
 	private String generateLixiKey(String presentId, String sessionId) {
 		return "lixi:"+presentId+":"+sessionId;
 	}
@@ -77,10 +73,6 @@ public class RedisCacheExtend  {
 		return "chat_pair:"+userId1+":"+userId2;
 	}
 	
-	// trong vi thi co 2 so dung vay cu set ay di:
-	/// duoc :
-	
-	
 	public Future<String> getUsername(String userId){
 		Future<String> future = Future.future();
 		client.hget("user_full:"+userId, "user_name", ar->{
@@ -88,11 +80,8 @@ public class RedisCacheExtend  {
 			else future.fail(ar.cause());
 		});
 		return future;
-		
 	}
-	
-	
-	
+
 	public void setHashedPassword(String hashedPassword, String userId) {
 		client.hget("user_full:"+userId, "user_name", ar->{
 			if(ar.succeeded()) {	
@@ -106,7 +95,7 @@ public class RedisCacheExtend  {
 			else throw new RuntimeException(ar.cause());
 		});
 	}
-	
+
 	public Future<Boolean> existWallet(String userId){
 		Future<Boolean> future  = Future.future();
 		client.exists(generateWalletKey(userId), ar->{
@@ -702,6 +691,23 @@ public class RedisCacheExtend  {
 			
 			throw new RuntimeException(handler.cause());
 		}));
+		return future;
+	}
+
+	public Future<String> getCounter(String s){
+		Future<String> future = Future.future();
+		client.incr(s, ar->{
+			if (ar.succeeded()){
+				client.get(s, ar1->{
+					if(ar1.succeeded()) future.complete(ar1.result());
+					else {
+						future.fail(ar1.cause());
+						client.decr(s,ar2->{});
+					}
+				});
+			} else
+				{future.fail(ar.cause());}
+		});
 		return future;
 	}
 }

@@ -13,7 +13,6 @@ public class ChatList implements Serializable {
     public List<UserHash> getUserHashes() {
         return userHashes;
     }
-
     public void setUserHashes(List<UserHash> userHashes) {
         this.userHashes = userHashes;
     }
@@ -21,7 +20,6 @@ public class ChatList implements Serializable {
     public String getSessionId() {
         return sessionId;
     }
-
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
     }
@@ -29,7 +27,6 @@ public class ChatList implements Serializable {
     public Date getUpdatedDate() {
         return updatedDate;
     }
-
     public void setUpdatedDate(Date updatedDate) {
         this.updatedDate = updatedDate;
     }
@@ -37,7 +34,6 @@ public class ChatList implements Serializable {
     public String getLastMessage() {
         return lastMessage;
     }
-
     public void setLastMessage(String lastMessage) {
         this.lastMessage = lastMessage;
     }

@@ -13,6 +13,8 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,7 +29,8 @@ public class BaseServiceTestSuite extends BaseVerticleTestSuite {
     public void test_insertUser_withValidUser_shouldSuccess(TestContext context) {
         final Async async = context.async();
         User user = new User();
-        user.setUserId(GenerationUtils.generateId());
+        String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyMMdd-"));
+        user.setUserId(date + "999999998");
         user.setUserName("insertTestUser");
         user.setFullName("Insert Test User");
         user.setPassword("123");

@@ -5,15 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97b5deda-9051-40de-9661-5af2dd5738c6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/cache/client/RedisCacheExtend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/cache/client/RedisCacheExtend.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/handler/WalletProtectedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/handler/WalletProtectedHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/handler/WsHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/handler/WsHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/model/ChatList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/model/ChatList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/model/ChatListItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/model/ChatListItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/service/APIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/service/APIService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/service/BaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/service/BaseService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/service/WalletService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/service/WalletService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/util/GenerationUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/util/GenerationUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/verticle/HeyVerticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/verticle/HeyVerticle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/walletmodel/P2PTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/walletmodel/P2PTransaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hey/walletmodel/SendP2PResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hey/walletmodel/SendP2PResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dev.application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dev.application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hey/repository/DataRepositoryTestSuite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hey/repository/DataRepositoryTestSuite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hey/service/BaseServiceTestSuite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hey/service/BaseServiceTestSuite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/cache/client/RedisCacheExtend.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/cache/client/RedisCacheExtend.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/handler/WalletProtectedHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/handler/WalletProtectedHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/hey/handler/WsHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/handler/WsHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/hey/model/ChatList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/model/ChatList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/service/APIService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/service/APIService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/service/BaseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/service/BaseService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/hey/service/WalletService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/service/WalletService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/util/GenerationUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/util/GenerationUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/verticle/HeyVerticle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/verticle/HeyVerticle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/P2PTransaction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/P2PTransaction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/SendP2PResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hey/walletmodel/SendP2PResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dev.application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev.application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hey/repository/DataRepositoryTestSuite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/hey/repository/DataRepositoryTestSuite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hey/service/BaseServiceTestSuite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/hey/service/BaseServiceTestSuite.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

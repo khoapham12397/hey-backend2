@@ -9,7 +9,7 @@ public class TopupResponse {
 	public void setCode(Boolean code) {
 		this.code = code;
 	}
-	private Long transactionId;
+	private String transactionId;
 	private Long timestamp;
 	private Long amount;
 	public String getMessage() {
@@ -18,10 +18,10 @@ public class TopupResponse {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public Long getTransactionId() {
+	public String getTransactionId() {
 		return transactionId;
 	}
-	public void setTransactionId(Long transactionId) {
+	public void setTransactionId(String transactionId) {
 		this.transactionId = transactionId;
 	}
 	public Long getTimestamp() {

@@ -186,11 +186,6 @@ public class WalletProtectedHandler {
 	}
 	
 
-	
-	private void registerUser(HttpServerRequest request, HttpServerResponse response, JsonObject jsonObject,
-			String userId) {
-		
-	}
 	private void registerWallet(HttpServerRequest request, HttpServerResponse response, JsonObject jsonObject, String userId) {
 		 Future<RegisterWalletResponse> future = walletService.registerWallet(jsonObject.mapTo(RegisterWallet.class), userId);
 		 future.compose(result->{
@@ -311,37 +306,6 @@ public class WalletProtectedHandler {
 		},Future.future().setHandler(handler->{handleException(handler.cause(), response);}));
 	}
 
-	private void processMessageP2P(SendP2PRequest request , String userId) {
-		System.out.println("processMessageP2P Name:"+request.getName());
-		String receiverID = request.getUserId();
-		Future<String> getNameFuture = redisCache.getNameByUserId(userId);
-		Future<String> findSessionId = redisCache.findSessionIdTwoPerson(userId, receiverID);
-		CompositeFuture cp = CompositeFuture.all(getNameFuture,findSessionId);
-		cp.setHandler(ar->{
-			if(ar.succeeded()) {
-				String sender = cp.resultAt(0);
-				String sessionId = cp.resultAt(1);
-
-				List<String> names = new ArrayList<>();
-				names.add(sender);
-				names.add(request.getName());
-						
-				ChatMessageRequest msg = new ChatMessageRequest();
-				msg.setGroupChat(false);
-						
-				if(sessionId==null)
-					msg.setSessionId("-1");
-				else
-					msg.setSessionId(sessionId);
-						
-				msg.setType(IWsMessage.TYPE_CHAT_MESSAGE_RESPONSE);
-				msg.setUsernames(names);
-				msg.setMessage(sender + "-SEND-"+ request.getName() + "-AMOUNT-"+request.getAmount());
-				wsHandler.insertChatMessageOnExistedChatSessionId(msg, null, userId);
-			}
-		
-		});
-	}
 	
 	
 	public void sendP2P(HttpServerRequest request , HttpServerResponse response,JsonObject jsonObject ,String userId) {
@@ -407,11 +371,11 @@ public class WalletProtectedHandler {
 	public void getAllLixis(HttpServerRequest request , HttpServerResponse response,JsonObject jsonObject ,String userId) {
 		Future<List<PresentsOfSession>> future = walletService.getAllLixisOfUser(userId);
 		future.compose(result->{
-			if(result!=null) {
+			
 				response.setStatusCode(HttpStatus.OK.code())
 				.putHeader("content-type", "application/json; charset=utf-8")
 				.end(JsonUtils.toSuccessJSON(result));
-			}
+			
 		}, Future.future().setHandler(handler->{
 			handleException(handler.cause(), response);
 		}));
@@ -420,11 +384,11 @@ public class WalletProtectedHandler {
 		Future<RemovePresentResponse> future = walletService.removePresent(jsonObject.getString("presentId")
 				, jsonObject.getString("sessionId"), userId);
 		future.compose(result->{
-			if(result!=null) {
-				response.setStatusCode(HttpStatus.OK.code())
-				.putHeader("content-type", "application/json; charset=utf-8")
-				.end(JsonUtils.toSuccessJSON(result));
-			}
+			
+			response.setStatusCode(HttpStatus.OK.code())
+			.putHeader("content-type", "application/json; charset=utf-8")
+			.end(JsonUtils.toSuccessJSON(result));
+			
 		}, Future.future().setHandler(handler->{
 			handleException(handler.cause(), response);
 		}));
@@ -432,12 +396,11 @@ public class WalletProtectedHandler {
 	public void getTopupTransactions(HttpServerRequest request , HttpServerResponse response,JsonObject jsonObject ,String userId) {
 		Future<List<TopupTransaction>> future = walletService.getTopupTransactions(jsonObject.mapTo(GetTopupsRequest.class), userId);
 		future.compose(result->{
-			if(result!=null) {
-				System.out.println("co result");
+			
 				response.setStatusCode(HttpStatus.OK.code())
 				.putHeader("content-type", "application/json; charset=utf-8")
 				.end(JsonUtils.toSuccessJSON(result));
-			}
+			
 		}, Future.future().setHandler(handler->{
 			handleException(handler.cause(), response);
 		}));
@@ -445,12 +408,11 @@ public class WalletProtectedHandler {
 	public void getP2PTransactions(HttpServerRequest request , HttpServerResponse response,JsonObject jsonObject ,String userId) {
 		Future<List<P2PTransaction>> future = walletService.getP2PTransactions(jsonObject.mapTo(GetP2PsRequest.class), userId);
 		future.compose(result->{
-			if(result!=null) {
-				System.out.println("co result");
+			
 				response.setStatusCode(HttpStatus.OK.code())
 				.putHeader("content-type", "application/json; charset=utf-8")
 				.end(JsonUtils.toSuccessJSON(result));
-			}
+			
 		}, Future.future().setHandler(handler->{
 			handleException(handler.cause(), response);
 		}));

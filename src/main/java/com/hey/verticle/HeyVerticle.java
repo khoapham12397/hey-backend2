@@ -151,9 +151,10 @@ public class HeyVerticle extends AbstractVerticle {
                 .compose(v -> wsServer.createWsServer(vertx))
                
                 .setHandler(future);
-        vertx.setPeriodic(10*60*1000, ar->{
+        
+        /*vertx.setPeriodic(10*60*1000, ar->{
         	redisCache.checkPresentsExpiredAndDelete();
-        });
+        });*/
        
     }
    

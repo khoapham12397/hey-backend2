@@ -338,18 +338,7 @@ public class WalletService {
 						if(ar1.succeeded()) {
 							SendP2PResponse response = ar1.result().mapTo(SendP2PResponse.class);
 							future.complete(response);
-							/*
-							ReceiveMoneyMessage msg =new ReceiveMoneyMessage();
-							//msg.setSenderId(userId);
-							// toi phan xu ly:  dung:
 							
-							msg.setSender("lvhung");
-							msg.setType(IWsMessage.TYPE_NOTFICATION_RECEIVE_MONEY);
-							msg.setAmount(rq.getAmount());
-							msg.setTimestamp(System.currentTimeMillis());
-							System.out.println("ReceiverId: "+ receiverId);
-							channelManager.sendMessage(msg, receiverId);
-							*/
 							Future<String> getNameSenderFuture = redisCache.getNameByUserId(userId);
 							Future<String> getNameReceiverFuture = redisCache.getNameByUserId(receiverId);
 							CompositeFuture cp = CompositeFuture.all(getNameSenderFuture, getNameReceiverFuture);
@@ -371,34 +360,7 @@ public class WalletService {
 			}
 			else future.fail(ar.cause());
 		});
-		/*
-		authenFuture.compose(authen->{
-			String hashedPin = authen.getHashedPin();
-			
-			if(authen!=null && hashedPin.equals(rq.getPin())) {
-				String url = "/sendP2P";
-				JsonObject body = new JsonObject();
-				
-				body.put("message", rq.getMessage());
-				body.put("senderId", userId);
-				body.put("receiverId",rq.getReceiverId());
-				body.put("amount", rq.getAmount());
-				
-				Future<JsonObject> callFuture = webClient.callPostService(url, body);
-				callFuture.setHandler(ar1->{
-					if(ar1.succeeded()) {
-						future.complete(ar1.result().mapTo(SendP2PResponse.class));
-					}
-					else {
-						future.fail(ar1.cause());
-					}
-				});
-			}
-			else future.fail("wrong pin");
-		}, Future.future().setHandler(ar->{
-			future.fail(ar.cause());
-		}));
-		*/
+		
 		return future;
 	}
 

@@ -84,7 +84,7 @@ public class APIService extends BaseService{
                     if (stringAsyncResult.succeeded()) {
                         user.setUserId(stringAsyncResult.result());
                         System.out.println("new user id: "+user.getUserId());
-
+                        
                         JsonObject obj =new JsonObject();
                         obj.put("userId", user.getUserId());
                         obj.put("username", user.getUserName());

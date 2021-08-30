@@ -286,7 +286,7 @@ public class WalletProtectedHandler {
 	
 	public void topup(HttpServerRequest request , HttpServerResponse response,JsonObject jsonObject ,String userId) {
 		System.out.println(jsonObject.toString());
-		System.out.println(jsonObject.getString("message")+" "+jsonObject.getLong("amount")+ " with pin: "+jsonObject.getString("pin"));
+		//System.out.println(jsonObject.getString("message")+" "+jsonObject.getLong("amount")+ " with pin: "+jsonObject.getString("pin"));
 		Future<TopupResponse> future = walletService.topup(jsonObject.mapTo(TopupRequest.class), userId);
 		
 		future.compose(result->{
@@ -320,7 +320,11 @@ public class WalletProtectedHandler {
 	}
 	
 	public void sendPresent(HttpServerRequest request , HttpServerResponse response,JsonObject jsonObject ,String userId) {
+		System.out.println("Vao sendPresent");
+		// 
 		CreatePresentRequest rq = jsonObject.mapTo(CreatePresentRequest.class);
+		System.out.println(userId +" send present -- "+ rq.getSessionId() + " amount : "+rq.getAmount() + " envelop : "+ rq.getEnvelope() +" pin : "+ rq.getPin());
+		
 		Future<Present> future = walletService.createLixi(rq, userId);
 		future.compose(result->{
 			;

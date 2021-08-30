@@ -249,18 +249,3 @@ public class ProtectedApiHandler extends BaseHandler {
         }));
     }
 }
-// ma pin pass qua ben day ??
-// sau do thi soa ??
-// do la viec nay dung vya :
-// tu do co the lam duock 
-// dieu quan trong la gi ?
-// dung vay do :
-
-// co dieu gi do change thi can lam lai la duioc 
-
-// dung chua ??
-
-// dung vay do :
-// dieu nay cung kha la ok do???
-// vi du neu ma thang kia ??
-// dau tien a

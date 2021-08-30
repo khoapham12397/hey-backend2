@@ -4,31 +4,24 @@ package com.hey.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-import org.apache.commons.lang3.StringUtils;
-import org.mindrot.jbcrypt.BCrypt;
 
 import com.hey.cache.client.RedisCacheExtend;
 import com.hey.handler.WsHandler;
 import com.hey.manager.UserWsChannelManager;
 import com.hey.model.ChatMessageRequest;
 import com.hey.model.IWsMessage;
-import com.hey.model.ReceiveMoneyMessage;
 import com.hey.util.GenerationUtils;
-import com.hey.walletmodel.Authen;
 import com.hey.walletmodel.ChangePassRequest;
 import com.hey.walletmodel.ChangePassResponse;
 import com.hey.walletmodel.ChangePinRequest;
 import com.hey.walletmodel.ChangePinResponse;
-import com.hey.walletmodel.ChangeProfileRequest;
 import com.hey.walletmodel.CreatePresentRequest;
 import com.hey.walletmodel.GetBalanceResponse;
 import com.hey.walletmodel.GetP2PsRequest;
 import com.hey.walletmodel.GetPresentRequest;
 import com.hey.walletmodel.GetPresentResponse;
 import com.hey.walletmodel.GetTopupsRequest;
-import com.hey.walletmodel.LixisOfSession;
 import com.hey.walletmodel.P2PTransaction;
 import com.hey.walletmodel.Present;
 import com.hey.walletmodel.PresentsOfSession;
@@ -47,7 +40,6 @@ import com.hey.webclient.MyWebClient;
 
 import io.vertx.core.CompositeFuture;
 import io.vertx.core.Future;
-import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
@@ -204,7 +196,7 @@ public class WalletService {
 		Future<TopupResponse> future = Future.future();
 		
 		String pin = rq.getPin(); 
-	
+		
 		Future<WalletResponse> authFuture = redisCache.getWallet(userId);
 		
 		
@@ -348,7 +340,7 @@ public class WalletService {
 								ts.setSender(cp.resultAt(0)); ts.setReceiver(cp.resultAt(1));
 								ts.setTransactionId(response.getTransactionId());
 								ts.setTimestamp(response.getTimestamp());
-								processMessageP2P(ts, userId, receiverId);
+								if(ts!=null) processMessageP2P(ts, userId, receiverId);
 							});
 						}
 						else {
@@ -392,10 +384,11 @@ public class WalletService {
 							JsonObject body = JsonObject.mapFrom(rq);
 							body.put("userId", userId);
 							body.put("presentId", present.getPresentId());
-
+								
 							Future<Present> insertPresentFuture = redisCache.insertLixi(present);
 							insertPresentFuture.setHandler(ar1->{
 								if(ar1.succeeded()) {
+									System.out.println("Call for create Present for "+ present.getSessionId());
 									Future<JsonObject> callFuture = webClient.callPostService("/createPresent", body);
 									callFuture.compose(res->{
 										if(res.getBoolean("code")) {

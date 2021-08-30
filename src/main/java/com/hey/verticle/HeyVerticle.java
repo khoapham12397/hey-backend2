@@ -63,9 +63,9 @@ public class HeyVerticle extends AbstractVerticle {
         LOGGER.info("Starting Inject Dependency for verticle {}", Thread.currentThread().getName());
         System.out.println("Redist host: "+PropertiesUtils.getInstance().getValue("redis.host"));
         RedisClient client = RedisClient.create(vertx,
-                new RedisOptions().setHost(PropertiesUtils.getInstance().getValue("redis.host"))
-                        .setPort(PropertiesUtils.getInstance().getIntValue("redis.port"))
-                        .setAuth(PropertiesUtils.getInstance().getValue("redis.auth")));
+                new RedisOptions().setHost(PropertiesUtils.getInstance().getValue("redis.host")));
+                 //       .setPort(PropertiesUtils.getInstance().getIntValue("redis.port"))
+        			//.setAuth(PropertiesUtils.getInstance().getValue("redis.auth")));
         
         DataRepository repository = new RedisCacheClient(client);
         
@@ -73,8 +73,7 @@ public class HeyVerticle extends AbstractVerticle {
         UserWsChannelManager userWsChannelManager = new UserWsChannelManager();
         userWsChannelManager.setEventBus(vertx.eventBus());
         userWsChannelManager.setSharedData(vertx.sharedData());
-        // dung la tu day 2 cai thang nay no dung cai nay de ma lam ???
-        // cai viec config nay cung kha dac biet dug vya :
+        
         
         // API Service
         apiService = new APIService();
